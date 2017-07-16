@@ -1,7 +1,7 @@
 const connect = require('./db-connect')
+const {isUrlValid, parseUrl} = require('./helpers')
 const express = require('express');
 const app = express();
-const url = require('url')
 
 app.use(express.static('public'));
 
@@ -10,12 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/new/:url*', (req, res) => {
-  //var url = req.params.url
-  //connect(url)
-  //respond with JSON
-  var urlToShorten = req.params.url + req.params[0]
-  console.log(url.parse('www.fgaf'))
-  res.end(urlToShorten)
+  res.end()
 })
 
 const listener = app.listen(process.env.PORT, function () {
