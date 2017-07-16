@@ -8,10 +8,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/:url', (req, res) => {
-  // parse params
-  connect(url)
-  //responde with JSON 
+app.get('/new', (req, res) => {
+  //var url = req.params.url
+  //connect(url)
+  //respond with JSON
+  console.log(req.path)
 })
 
 const listener = app.listen(process.env.PORT, function () {
