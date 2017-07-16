@@ -6,8 +6,9 @@ const parseUrl = (urlParams) => {
 
 const isUrlValid = (urlToParse) => {
   var urlDetails = url.parse(urlToParse)
+  console.log(urlDetails)
   
-  if (urlDetails.host === null) throw new Error('Invalid URL string')
+  if (urlDetails.host == false) throw new Error('Invalid URL string')
   else {
     return urlDetails.href
   }
