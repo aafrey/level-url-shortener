@@ -1,16 +1,14 @@
-const http = require('http')
+const url = require('url')
 
 const parseUrl = (urlParams) => {
-  var url = urlParams.url + urlParams[0]
+  return urlParams.url + urlParams[0]
 }
 
-const isUrlValid = (url) => {
-  return new Promise((resolve, reject) => {
-    http.get(url, (res) => {
-      if (res.statusCode !== 200) reject()
-      else resolve()
-    })
-  })
+const isUrlValid = (urlToParse) => {
+  var urlDetails = url.parse(urlToParse)
+  
+  if (urlDetails.host === null) throw new Error('Invalid URL string')
+  else return url.href
 }
 
 module.exports ={
