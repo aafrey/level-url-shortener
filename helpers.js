@@ -8,7 +8,9 @@ const isUrlValid = (urlToParse) => {
   var urlDetails = url.parse(urlToParse)
   
   if (urlDetails.host === null) throw new Error('Invalid URL string')
-  else return url.href
+  else {
+    return urlDetails.href
+  }
 }
 
 module.exports ={

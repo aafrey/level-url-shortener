@@ -1,6 +1,5 @@
 const connect = require('./db-connect')
 const {isUrlValid, parseUrl} = require('./helpers')
-const url = require('url')
 const express = require('express');
 const app = express();
 
@@ -11,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/new/:url*', (req, res) => {
-  res.end(JSON.stringify(url.parse(parseUrl(req.params))))
+  res.end(isUrlValid(parseUrl(req.params)))
 })
 
 const listener = app.listen(process.env.PORT, function () {
