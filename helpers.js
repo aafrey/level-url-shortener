@@ -1,17 +1,14 @@
-const url = require('url')
+const validUrl = require('valid-url')
 
 const parseUrl = (urlParams) => {
   return urlParams.url + urlParams[0]
 }
 
-const isUrlValid = (urlToParse) => {
-  var urlDetails = url.parse(urlToParse)
-  console.log(urlDetails)
+const isUrlValid = (url) => {
+  console.log(validUrl.isUri(url))
   
-  if (urlDetails.host == false) throw new Error('Invalid URL string')
-  else {
-    return urlDetails.href
-  }
+  if (!validUrl.isWebUri(url) && url.includes(',') ) throw new Error('Invalid URL string')
+  else return url
 }
 
 module.exports ={
