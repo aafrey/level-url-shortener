@@ -1,21 +1,31 @@
 const mongo = require('mongodb').MongoClient
 
-const url = "mongodb://" + process.env.DBUSER + ":" + process.env.DBPW + "@ds147872.mlab.com:47872/glitch" 
-console.log(url)
+const mongoUri = process.env.MONGO_URI 
+console.log(mongoUri)
 
 const connect = (url) => {
-  mongo.connect(url, (err, db) => {
+  mongo.connect(mongoUri, (err, db) => {
     if (err) throw err
     
     var collection = db.collection('urls')
     
     collection.find({url: 'numIds'}).toArray((err, docs) => {
+      if (err) throw err
+      
+      var shortenedUrl
+      
       if (docs.length === 0) {
         collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}])
-        return 'https://nickel-value.glitch.me/0'
+          .then(() => {
+            shortenedUrl = 'https://nickel-value.glitch.me/0'
+            db.close()
+            
+      } else {
+        shortenedUrl = 'https://nickel-value.glitch.me/' + docs[0].toString()
       }
-      return 'https://nickel-value.glitch.me/' + docs[0].toString()
+      
       db.close()
+      return shortenedUrl  
     })
     
   })
