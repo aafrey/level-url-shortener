@@ -8,22 +8,22 @@ const connect = (url) => {
     if (err) throw err
     
     var collection = db.collection('urls')
-    
-    return collection.findOne({url: 'numIds'}, (err, docs) => {
+    var short
+    collection.findOne({url: 'numIds'}, (err, docs) => {
       if (err) throw err
-      
+      var short
       if (docs === null) {
         collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}], () => {
-          shortenedUrl = 'https://nickel-value.glitch.me/0'
-          db.
+          short = 'https://nickel-value.glitch.me/0'
         })
       } else {
-        shortenedUrl = 'https://nickel-value.glitch.me/' + docs[0].toString()
+        short = 'https://nickel-value.glitch.me/' + docs[0].toString()
       }
     })
     db.close()
+    console.log(short)
   })
-  return shortenedUrl
+  //console.log(shortUrl)
 }
 
 module.exports = connect
