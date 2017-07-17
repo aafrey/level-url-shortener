@@ -10,8 +10,7 @@ const connect = (url) => {
     
     collection.find({url: 'numIds'}).toArray((err, docs) => {
       if (docs.length === 0) {
-        collection.insertMany([{url: {numIds: 0}}, {url: {0: url}})
-        collection.insert()
+        collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}])
         return '0'
       }
       return docs[0].toString()

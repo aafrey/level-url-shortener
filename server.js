@@ -10,14 +10,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/new/:url*', (req, res) => {
-  res.end(isUrlValid(parseUrl(req.params)))
+  if (isUrlValid(parseUrl(req.params))) connect(url)
+  else th
+  
+  res.end()
 })
 
 const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
-});
+})
 
-connect()
+
 /*
 Grab to be shortened URL from params
 

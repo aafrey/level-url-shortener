@@ -7,8 +7,8 @@ const parseUrl = (urlParams) => {
 const isUrlValid = (url) => {
   console.log(validUrl.isURL(url))
   
-  if (!validUrl.isURL(url)) throw new Error('Invalid URL string')
-  else return url
+  if (!validUrl.isURL(url)) return false
+  else return true
 }
 
 module.exports = {
