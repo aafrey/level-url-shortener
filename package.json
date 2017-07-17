@@ -9,6 +9,10 @@
   "scripts": {
     "start": "node server.js"
   },
+  "xo": {
+    "space": true,
+    "semicolon": false
+  },
   "dependencies": {
     "express": "^4.15.3",
     "mongodb": "^2.2.30",
@@ -25,5 +29,8 @@
     "node",
     "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "xo": "^0.18.2"
+  }
 }
