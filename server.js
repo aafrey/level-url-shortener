@@ -11,10 +11,9 @@ app.get('/', (req, res) => {
 
 app.get('/new/:url*', (req, res) => {
   var url = parseUrl(req.params)
-  if (isUrlValid(url)) res.end(connect(url))
+  if (isUrlValid(url)) connect(url, res)
   else throw new Error('Invalid URL syntax.')
   
-  res.end()
 })
 
 const listener = app.listen(process.env.PORT, function () {
