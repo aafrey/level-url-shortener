@@ -4,9 +4,7 @@ const parseUrl = (urlParams) => {
   return urlParams.url + urlParams[0]
 }
 
-const isUrlValid = (url) => {
-  console.log(validUrl.isURL(url))
-  
+const isUrlValid = (url) => { 
   if (!validUrl.isURL(url)) return false
   else return true
 }
