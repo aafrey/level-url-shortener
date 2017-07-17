@@ -27,18 +27,22 @@ const connect = (url, res) => {
           res.end(JSON.stringify(urlsToSend))
         })
       } else {
-        collection.update({_id: 'url info'}, {$inc: {numIds: 1}}, (err) => { 
-          
+        collection.update({_id: 'url info'}, {$inc: {numIds: 1}}, err => {
           if (err) {
             throw err
           }
-          collection.insert({})
-
-          const urlId = docs[0].numIds + 1
-          const urlToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/' + urlId}
-
-          db.close()
-          res.end(JSON.stringify(urlToSend))
+          const urlId = {}
+          const key = docs[0].numIds + 1
+          urlId[key] = url
+          collection.insert(
+            urlId
+          ).then(() => {
+            const urlToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/' + key}
+            res.end(JSON.stringify(urlToSend))  
+            db.close()
+          }).catch(err => {
+            console.log(err)
+          })
         })
       }
     })
