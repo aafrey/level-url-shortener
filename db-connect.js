@@ -1,7 +1,6 @@
 const mongo = require('mongodb').MongoClient
 
 const mongoUri = process.env.MONGO_URI 
-console.log(mongoUri)
 
 const connect = (url) => {
   mongo.connect(mongoUri, (err, db) => {
@@ -9,17 +8,18 @@ const connect = (url) => {
     
     var collection = db.collection('urls')
     
-    collection.find({url: 'numIds'}).toArray((err, docs) => {
+    collection.findOne({url: 'numIds'}, (err, docs) => {
       if (err) throw err
-      
+      console.log(docs)
       var shortenedUrl
       
-      if (docs.length === 0) {
+      if (docs === null) {
         collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}])
-          .then(() => {
-            shortenedUrl = 'https://nickel-value.glitch.me/0'
-            db.close()
-            
+        .then(() => {
+          shortenedUrl = 'https://nickel-value.glitch.me/0'
+          db.close()
+          return shortenedUrl
+        })
       } else {
         shortenedUrl = 'https://nickel-value.glitch.me/' + docs[0].toString()
       }

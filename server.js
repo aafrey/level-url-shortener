@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 
 app.get('/new/:url*', (req, res) => {
   var url = parseUrl(req.params)
-  if (isUrlValid(url)) res.end(connect(url))
+  if (isUrlValid(url)) console.log(connect(url))
   else throw new Error('Invalid URL syntax.')
   
   res.end()
