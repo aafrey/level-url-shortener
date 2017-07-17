@@ -19,14 +19,3 @@ app.get('/new/:url*', (req, res) => {
 const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 })
-
-
-/*
-Grab to be shortened URL from params
-
-parse to ensure its valid
-
-addd a new entry to db collection that matches the shortened URL with the original
-
-return it to client
-*/
