@@ -10,22 +10,18 @@ const connect = (url) => {
     
     collection.findOne({url: 'numIds'}, (err, docs) => {
       if (err) throw err
-      console.log(docs)
       var shortenedUrl
       
       if (docs === null) {
-        collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}])
-        .then(() => {
+        collection.insertMany([{url: {numIds: 0}}, {url: {0: url}}], () => {
           shortenedUrl = 'https://nickel-value.glitch.me/0'
-          db.close()
-          return shortenedUrl
+          //db.close()
+          console.log(shortenedUrl)
         })
       } else {
         shortenedUrl = 'https://nickel-value.glitch.me/' + docs[0].toString()
-      }
-      
-      db.close()
-      return shortenedUrl  
+      }  
+      console.log(shortenedUrl)
     })
     
   })
