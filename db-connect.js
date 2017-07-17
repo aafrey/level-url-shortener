@@ -1,6 +1,6 @@
 const mongo = require('mongodb').MongoClient
-
-const url = 'mongodb://' + process.ENV.DBUSER + ':' + process.ENV.DBPW + '@ds147872.mlab.com:47872/glitch' 
+console.log(process.env)
+const url = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds147872.mlab.com:47872/glitch' 
 
 const connect = (urlId, actualUrl) => {
   mongo.connect(url, (err, db) => {
