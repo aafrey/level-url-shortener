@@ -1,5 +1,5 @@
 const mongo = require('mongodb').MongoClient
-console.log(process.env)
+console.log(process.env.DBUSER)
 const url = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds147872.mlab.com:47872/glitch' 
 
 const connect = (urlId, actualUrl) => {
@@ -17,7 +17,7 @@ const connect = (urlId, actualUrl) => {
   })
 }
 
-connect()
+//connect()
 
 //module.exports = connect
 
