@@ -10,7 +10,7 @@
     "start": "node server.js"
   },
   "xo": {
-    "space": true,
+    "space": 3,
     "semicolon": false
   },
   "dependencies": {
