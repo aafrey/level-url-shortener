@@ -20,6 +20,10 @@ app.get('/new/:url*', (req, res) => {
    }
 })
 
+app.get('/:urlId', (req, res) => {
+  
+})
+
 const listener = app.listen(process.env.PORT, () => {
    console.log('Your app is listening on port ' + listener.address().port)
 })
