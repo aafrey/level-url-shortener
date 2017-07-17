@@ -7,9 +7,12 @@ const connect = (urlId, actualUrl) => {
     if (err) throw err
     
     var collection = db.collection('urls')
-    var id = collection.db.find({'url})
-    collection.insert('')
+    var id = collection.find({url: 'numIds'})
+    console.log(id)
+    //collection.insert('')
     
+  }).toArray((err, docs) => {
+    db.close()
   })
 }
 
