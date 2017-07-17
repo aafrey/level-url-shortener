@@ -2,7 +2,7 @@ const mongo = require('mongodb').MongoClient
 
 const mongoUri = process.env.MONGO_URI 
 
-const connect = (url) => {
+const connect = (url, res) => {
   var shortUrl
   mongo.connect(mongoUri, (err, db) => {
     if (err) throw err
@@ -11,14 +11,12 @@ const connect = (url) => {
     
     var currentUrlId = collection.findOne({url: 'numIds'}, (err, docs) => {
       if (err) throw err
-      foodocs
+      
+      if (docs === null) {
+        collection.insertMany([{urlId: 0}, {urls: {0: url}}], (err,))
+      }
     })
-    
-    //console.log(currentUrlId)
-    
-    db.close()
   })
-  return shortUrl
 }
 
 module.exports = connect
