@@ -4,9 +4,7 @@ const url = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds147
 
 const connect = (x) => {
   mongo.connect(url, (err, db) => {
-    if (err) throw err
-    
-    
+    if (err) throw err  
   })
 }
 

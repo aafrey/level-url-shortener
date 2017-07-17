@@ -1,17 +1,17 @@
-const validUrl = require('valid-url')
+const validUrl = require('validator')
 
 const parseUrl = (urlParams) => {
   return urlParams.url + urlParams[0]
 }
 
 const isUrlValid = (url) => {
-  console.log(validUrl.isUri(url))
+  console.log(validUrl.isURL(url))
   
-  if (!validUrl.isWebUri(url) && url.includes(',') ) throw new Error('Invalid URL string')
+  if (!validUrl.isURL(url)) throw new Error('Invalid URL string')
   else return url
 }
 
-module.exports ={
+module.exports = {
   parseUrl,
   isUrlValid
 }
