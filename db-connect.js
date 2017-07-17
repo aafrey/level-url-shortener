@@ -8,11 +8,11 @@ const connect = (url, res) => {
 
     const collection = db.collection('urls')
     // TODO fix this query, it's always returns null
-    collection.find({urlId: {$exists: true}}, (err, docs) => {
+    collection.find({_id: 'url info'}, (err, docs) => {
       if (err) throw err
 
       if (docs === null) {
-        collection.insertMany([{urlId: {numIds: 0}}, {urls: {0: url}}], (err, r) => {
+        collection.insertMany([{_Id: 'url info', numIds: 0}, {urls: {0: url}}], (err, r) => {
           if (err) throw err
 
           const urlsToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/0'}
@@ -21,7 +21,8 @@ const connect = (url, res) => {
           res.end(JSON.stringify(urlsToSend))
         })
       } else {
-        console.log('todo')
+        res.end('todo')
+        db.close()
       }
     })
   })
