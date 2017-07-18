@@ -21,7 +21,8 @@ app.get('/new/:url*', (req, res) => {
 })
 
 app.get('/:urlId', (req, res) => {
-  
+  console.log(req.params)
+  getUrl(req.params.urlId, res)
 })
 
 const listener = app.listen(process.env.PORT, () => {

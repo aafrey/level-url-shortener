@@ -8,10 +8,11 @@ const getUrl = (urlId, res) => {
     if (err) {
       throw err
     }
-    const collection = db.collection('url')
+    const collection = db.collection('urls')
     collection.findOne(
-      {_id: urlId}
+      {_id: parseInt(urlId)}
     ).then((doc) => {
+      console.log(doc)
       db.close()
       res.redirect(doc.url)
     }).catch((err) => console.log(err))    
