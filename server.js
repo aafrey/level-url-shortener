@@ -2,7 +2,7 @@ const express = require('express')
 
 const {isUrlValid, parseUrl} = require('./helpers')
 
-const {connect, getUrl} = require('./db-connect')
+const {connect, getUrl} = require('./db-helpers')
 
 const app = express()
 
@@ -21,8 +21,8 @@ app.get('/new/:url*', (req, res) => {
 })
 
 app.get('/:urlId', (req, res) => {
-  console.log(req.params)
-  getUrl(req.params.urlId, res)
+   console.log(req.params)
+   getUrl(req.params.urlId, res)
 })
 
 const listener = app.listen(process.env.PORT, () => {
