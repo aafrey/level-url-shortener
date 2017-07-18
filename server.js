@@ -2,7 +2,7 @@ const express = require('express')
 
 const {isUrlValid, parseUrl} = require('./helpers')
 
-const connect = require('./db-connect')
+const {connect, getUrl} = require('./db-connect')
 
 const app = express()
 

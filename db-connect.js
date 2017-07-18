@@ -5,15 +5,16 @@ const mongoUri = process.env.MONGO_URI
 const getUrl = (urlId, res) => {
   
   mongo.connect(mongoUri, (err, db) => {
-    
     if (err) {
       throw err
     }
-    
     const collection = db.collection('url')
-    
-    collection.find()
-    
+    collection.findOne(
+      {_id: urlId}
+    ).then((doc) => {
+      db.close()
+      res.redirect(doc.url)
+    }).catch((err) => console.log(err))    
   })
   
 }
@@ -21,48 +22,41 @@ const getUrl = (urlId, res) => {
 const connect = (url, res) => {
   
    mongo.connect(mongoUri, (err, db) => {
-     
       if (err) {
          throw err
       }
-
       const collection = db.collection('urls')
-
       collection.find({_id: 'url info'}).toArray((err, docs) => {
-        
          if (err) {
             throw err
          }
-
          if (docs.length === 0) {
             collection.insertMany(
-               [{_id: 'url info', numIds: 0}, {0: url}]
+               [{_id: 'url info', numIds: 0}, {_id: 0, url: url}]
             ).then(() => {
                const urlsToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/0'}
                db.close()
                res.end(JSON.stringify(urlsToSend))
-            }).catch(err => console.log(err))
-           
+            }).catch(err => console.log(err))   
          } else {
-           
             collection.update(
                {_id: 'url info'}, {$inc: {numIds: 1}}
-
             ).then(() => {
-               const urlId = {}
-               const key = docs[0].numIds + 1
-               urlId[key] = url
-               collection.insert(urlId)
-               return key
-            }).then(key => {
-               const urlToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/' + key}
+               const urlId = docs[0].numIds + 1
+               collection.insert({_id: urlId, url: url})
+               return urlId
+            }).then(urlId => {
+               const urlToSend = {normal: url, shortened: 'https://nickel-value.glitch.me/' + urlId}
                res.end(JSON.stringify(urlToSend))
                db.close()
             }).catch(err => console.log(err))
          }
       })
    })
+  
 }
 
-module.exports = connect
-
+module.exports = {
+  connect,
+  getUrl
+}
