@@ -1,6 +1,7 @@
 const mongo = require('mongodb').MongoClient
 
 const mongoUri = process.env.MONGO_URI
+console.log(mongoUri)
 const shortUrl = process.env.SHORT_URL
 
 const getUrl = (urlId, res) => {
