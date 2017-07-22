@@ -11,6 +11,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
    res.sendFile(__dirname + '/views/index.html')
 })
+
 app.get('/new/:url*', (req, res) => {
    const url = parseUrl(req.params)
    if (isUrlValid(url)) {
@@ -21,8 +22,7 @@ app.get('/new/:url*', (req, res) => {
 })
 
 app.get('/:urlId', (req, res) => {
-   console.log(req.params)
-   getUrl(req.params.urlId, res)
+   if (req.params) getUrl(req.params.urlId, res)
 })
 
 const listener = app.listen(process.env.PORT, () => console.log('listening on:',listener.address().port))
