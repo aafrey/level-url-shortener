@@ -12,7 +12,6 @@ const getUrl = (urlId, res) => {
       collection.findOne(
       {_id: parseInt(urlId, 10)}
     ).then(doc => {
-       console.log(doc)
        db.close()
        res.redirect(doc.url)
     }).catch(err => console.log(err))
