@@ -11,7 +11,9 @@ app.use(express.static('public'))
 app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'))
 
 app.post('/dreams', (req, res) => {
-  console.log(req.query)
+  const url = req.query.dream
+  if (isUrlValid(url)) connect(url, res)
+  else throw new Error('Invalid URL syntax.')
 })
 
 app.get('/new/:url*', (req, res) => {
