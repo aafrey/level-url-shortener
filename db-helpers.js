@@ -36,7 +36,7 @@ const connect = (url, res) => {
             ).then(() => {
                const urlsToSend = {normal: url, shortened: shortUrl + '0'}
                db.close()
-               res.end(JSON.stringify(urlsToSend))
+               res.status(200).end(JSON.stringify(urlsToSend))
             }).catch(err => console.log(err))
          } else {
             collection.update(
@@ -47,7 +47,7 @@ const connect = (url, res) => {
                return urlId
             }).then(urlId => {
                const urlToSend = {normal: url, shortened: shortUrl + urlId}
-               res.end(JSON.stringify(urlToSend))
+               res.status(200).end(JSON.stringify(urlToSend))
                db.close()
             }).catch(err => console.log(err))
          }
