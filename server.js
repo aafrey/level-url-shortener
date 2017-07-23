@@ -10,6 +10,10 @@ app.use(express.static('public'))
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'))
 
+app.post('/dreams', (req, res) => {
+  console.log(req.query)
+})
+
 app.get('/new/:url*', (req, res) => {
    const url = parseUrl(req.params)
    if (isUrlValid(url)) connect(url, res)  
