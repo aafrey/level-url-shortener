@@ -1,5 +1,7 @@
 const express = require('express')
 
+const morgan = require('morgan')
+
 const {isUrlValid, parseUrl} = require('./helpers')
 
 const {connect, getUrl} = require('./db-helpers')
@@ -7,6 +9,8 @@ const {connect, getUrl} = require('./db-helpers')
 const app = express()
 
 app.use(express.static('public'))
+
+app.use(morgan('short'))
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'))
 
