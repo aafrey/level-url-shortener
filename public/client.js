@@ -8,7 +8,7 @@ $('form').submit(event => {
    event.preventDefault()
    const dream = $('input').val()
    $.post('/dreams?' + $.param({dream}), urlJSON => {
-      $('<li></li>').text(urlJSON).appendTo('ul#dreams')
+      $('p#dreams').text(urlJSON)
       $('input').val('')
       $('input').focus()
    })
