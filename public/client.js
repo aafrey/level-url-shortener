@@ -16,8 +16,8 @@ $(() => {
    $('form').submit(event => {
       event.preventDefault()
       const dream = $('input').val()
-      $.post('/dreams?' + $.param({dream}), () => {
-         $('<li></li>').text(dream).appendTo('ul#dreams')
+      $.post('/dreams?' + $.param({dream}), (urlJSON) => {
+         $('<li></li>').text(urlJSON).appendTo('ul#dreams')
          $('input').val('')
          $('input').focus()
       })

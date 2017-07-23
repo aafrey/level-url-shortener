@@ -12,6 +12,7 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'))
 
 app.post('/dreams', (req, res) => {
   const url = req.query.dream
+  console.log(isUrlValid(url))
   if (isUrlValid(url)) connect(url, res)
   else throw new Error('Invalid URL syntax.')
 })
