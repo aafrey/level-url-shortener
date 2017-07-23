@@ -20,12 +20,16 @@ const getUrl = (urlId, res) => {
 
 const connect = (url, res) => {
    mongo.connect(mongoUri, (err, db) => {
-      if (err)  throw err
-        
+      if (err) {
+         throw err
+      }
+
       const collection = db.collection('urls')
       collection.find({_id: 'url info'}).toArray((err, docs) => {
-         if (err)    throw err
-         
+         if (err) {
+            throw err
+         }
+
          if (docs.length === 0) {
             collection.insertMany(
                [{_id: 'url info', numIds: 0}, {_id: 0, url}]
