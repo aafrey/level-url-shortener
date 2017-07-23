@@ -8,9 +8,7 @@ const {connect, getUrl} = require('./db-helpers')
 
 const app = express()
 
-app.use(express.static('public'))
-
-app.use(morgan('short'))
+app.use([express.static('public'), morgan('common')])
 
 app.get('/', (req, res) => res.sendFile(__dirname + '/views/index.html'))
 
