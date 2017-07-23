@@ -16,14 +16,8 @@ app.post('/dreams', (req, res) => {
   else throw new Error('Invalid URL syntax.')
 })
 
-app.get('/new/:url*', (req, res) => {
-   const url = parseUrl(req.params)
-   if (isUrlValid(url)) connect(url, res)  
-   else throw new Error('Invalid URL syntax.')
-})
-
 app.get('/:urlId', (req, res) => {
-   if (req.params) getUrl(req.params.urlId, res)
+   if (req.params.urlId !== 'dreams') getUrl(req.params.urlId, res)
 })
 
 const listener = app.listen(process.env.PORT, () => {
