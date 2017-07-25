@@ -1,34 +1,14 @@
-const mongo = require('mongodb').MongoClient
+const db = require('./db')
 
 const mongoUri = process.env.MONGO_URI
 const shortUrl = process.env.SHORT_URL
 
-const getUrl = (urlId, res) => {
-   mongo.connect(mongoUri, (err, db) => {
-      if (err) {
-         throw err
-      }
-      const collection = db.collection('urls')
-      collection.findOne(
-      {_id: parseInt(urlId, 10)}
-    ).then(doc => {
-       db.close()
-       res.redirect(doc.url)
-    }).catch(err => console.log(err))
-   })
-}
-
 const connect = (url, res) => {
-   mongo.connect(mongoUri, (err, db) => {
-      if (err) {
-         throw err
-      }
-
-      const collection = db.collection('urls')
-      collection.find({_id: 'url info'}).toArray((err, docs) => {
-         if (err) {
-            throw err
-         }
+   var _id
+   if (db.get('_id')) { _id = db.get('_id') }
+  
+  
+  
 
          if (docs.length === 0) {
             collection.insertMany(

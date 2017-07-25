@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "express": "^4.15.3",
-    "mongodb": "^2.2.30",
+    "level": "^1.7.0",
     "morgan": "^1.8.2",
     "validator": "^8.0.0"
   },
