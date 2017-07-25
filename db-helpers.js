@@ -6,9 +6,10 @@ const connect = (url, res) => {
    var _id
    if (db.get('_id') === undefined) { _id = db.put('_id', '0') }
    else { _id = db.get('_id') }
-   const urlToSend = {normal: url, shortUrl: shortUrl + _id}
+   const urlToSend = {normal: url, shortUrl: shortUrl + _id }
    
-   db.put('_id', parseInt(_id)++)
+   (parseInt(_id), _id++)
+   db.put('_id', parseInt(_id))
      
    res.status(200).end(JSON.stringify(urlsToSend))
 
