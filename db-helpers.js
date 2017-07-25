@@ -1,23 +1,17 @@
 const db = require('./db')
 
-const mongoUri = process.env.MONGO_URI
 const shortUrl = process.env.SHORT_URL
 
 const connect = (url, res) => {
    var _id
-   if (db.get('_id')) { _id = db.get('_id') }
-  
-  
-  
+   if (db.get('_id') === undefined) { _id = db.put('_id', '0') }
+   else { _id = db.get('_id') }
+   const urlToSend = {normal: url, shortUrl: shortUrl + _id}
+   
+   db.put('_id', parseInt(_id)++)
+     
+   res.status(200).end(JSON.stringify(urlsToSend))
 
-         if (docs.length === 0) {
-            collection.insertMany(
-               [{_id: 'url info', numIds: 0}, {_id: 0, url}]
-            ).then(() => {
-               const urlsToSend = {normal: url, shortened: shortUrl + '0'}
-               db.close()
-               res.status(200).end(JSON.stringify(urlsToSend))
-            }).catch(err => console.log(err))
          } else {
             collection.update(
                {_id: 'url info'}, {$inc: {numIds: 1}}
