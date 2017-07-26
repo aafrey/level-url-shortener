@@ -2,7 +2,8 @@ const db = require('./db')
 
 const shortUrl = process.env.SHORT_URL
 
-const getNextId = new Promise((resolve, reject) => {
+const getNextId = () => 
+{ new Promise((resolve, reject) => {
    db.get('_id', (err, val) => {
       if (err) {
          reject(err)
@@ -16,6 +17,7 @@ const getNextId = new Promise((resolve, reject) => {
       }
    })
 })
+                     }
 
 const getUrl = id => {
    return new Promise((resolve, reject) => {
