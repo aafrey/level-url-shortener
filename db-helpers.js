@@ -5,14 +5,12 @@ const shortUrl = process.env.SHORT_URL
 const getNextId = () => {
    return new Promise((resolve, reject) => {
       db.get('_id', (err, val) => {
-         if (err) {
-            reject(err)
-         }
          if (val === undefined) {
             db.put('_id', '0')
             resolve('0')
+         } else if (err) {
+            reject(err)
          } else {
-            console.log(val)
             resolve(val)
          }
       })
@@ -38,6 +36,7 @@ const connect = (url, res) => {
       db.put('_id', id)
       return id
    }).then(() => res.end())
+   .catch(err => console.log(err))
 }
 
 module.exports = {
