@@ -20,7 +20,7 @@ const getNextId = () => {
 }
 
 const getUrl = id => {
-   new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
       db.get(id, (err, val) => err ? reject(err) : resolve(val))
    })
 }
@@ -29,13 +29,17 @@ const connect = (url, res) => {
    getNextId()
    .then(id => {
       res.status(200).send(JSON.stringify({normal: url, shortUrl: shortUrl + id}))
+      db.put(id, url)
       return id
    })
    .then(id => {
       id = parseInt(id)
       id++
       db.put('_id', parseInt(id))
+      return id
    }).then(() => res.end())
+  
+   
 }
 
 module.exports = {

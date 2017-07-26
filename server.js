@@ -23,7 +23,7 @@ app.post('/dreams', (req, res) => {
 
 app.get('/:urlId', (req, res) => {
    if (req.params.urlId !== 'dreams') {
-      getUrl(req.params.urlId, res)
+      getUrl(req.params.urlId).then(url => res.redirect(url))
    }
 })
 

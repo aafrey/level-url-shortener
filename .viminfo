@@ -14,6 +14,7 @@ $
 :q
 
 # Search String History (newest to oldest):
+? @$
 
 # Expression History (newest to oldest):
 
@@ -24,12 +25,38 @@ $
 # Registers:
 
 # File marks:
-'0  1  63  ~/urls/000044.ldb
+'0  2  65  ~/urls/MANIFEST-000172
+'1  1  0  ~/urls/CURRENT
+'2  1  0  ~/urls/000072.ldb
+'3  1  63  ~/urls/000044.ldb
 
 # Jumplist (newest first):
+-'  2  65  ~/urls/MANIFEST-000172
+-'  1  0  ~/urls/CURRENT
+-'  1  0  ~/urls/000072.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  0  ~/urls/000072.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  0  ~/urls/CURRENT
+-'  1  0  ~/urls/000072.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  63  ~/urls/000044.ldb
+-'  1  0  ~/urls/000072.ldb
+-'  1  63  ~/urls/000044.ldb
 -'  1  63  ~/urls/000044.ldb
 
 # History of marks within files (newest to oldest):
+
+> ~/urls/MANIFEST-000172
+	"	2	65
+
+> ~/urls/CURRENT
+	"	1	0
+
+> ~/urls/000072.ldb
+	"	1	0
 
 > ~/urls/000044.ldb
 	"	1	63
