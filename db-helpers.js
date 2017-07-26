@@ -2,10 +2,6 @@ const db = require('./db')
 
 const shortUrl = process.env.SHORT_URL
 
-const getUrl = (urlId, res) => {
-  res.status(200).end(db.get(urlId))
-}
-
 const connect = (url, res) => {
    var _id
    
@@ -33,13 +29,22 @@ const connect = (url, res) => {
    res.status(200).end(JSON.stringify(urlsToSend))
 } 
 
-const put = (id) => { new Promise((resolve, reject) => {
-  var _id
+function getId = new Promise((resolve, reject) => {
   db.get('_id', (err, val) => {
-    
+    if (err) reject(err)
+    if (val === undefined) {
+      db.put('_id', '0')
+      resolve('0')
+    }
+    else resolve(val)
   })
-  })
+})
+
+const getUrl = (id) => { new Promise((resolve, reject) => {
+  
+})
 }
+
 
 module.exports = {
    connect,
