@@ -11,6 +11,7 @@ const connect = (url, res) => {
    
    db.get('_id', (err, val) => {
      _id = val
+     console.log(_id)
    })
    console.log(_id)
   
@@ -31,6 +32,14 @@ const connect = (url, res) => {
      
    res.status(200).end(JSON.stringify(urlsToSend))
 } 
+
+const put = (id) => { new Promise((resolve, reject) => {
+  var _id
+  db.get('_id', (err, val) => {
+    
+  })
+  })
+}
 
 module.exports = {
    connect,
