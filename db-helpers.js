@@ -8,11 +8,25 @@ const getUrl = (urlId, res) => {
 
 const connect = (url, res) => {
    var _id
-   if (db.get('_id') === undefined) { _id = db.put('_id', '0') }
-   else { _id = db.get('_id') }
+   
+   db.get('_id', (err, val) => {
+     _id = val
+   })
+   console.log(_id)
+  
+   if (_id === undefined) { 
+     db.put('_id', '0')
+     _id = '0'
+   } else { 
+     db.get('_id', (err, val) => {
+       _id = val
+     }) 
+   }
+  
    const urlsToSend = {normal: url, shortUrl: shortUrl + _id }
    
-   (parseInt(_id), _id++)
+   _id = parseInt(_id)
+   _id++
    db.put('_id', parseInt(_id))
      
    res.status(200).end(JSON.stringify(urlsToSend))

@@ -20,7 +20,7 @@
     "validator": "^8.0.0"
   },
   "engines": {
-    "node": "8.1.x"
+    "node": "6.x.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/welcome-project"
