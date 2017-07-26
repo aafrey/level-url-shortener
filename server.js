@@ -2,7 +2,7 @@ const express = require('express')
 
 const morgan = require('morgan')
 
-const {isUrlValid, parseUrl} = require('./helpers')
+const isUrlValid = require('./helpers')
 
 const {connect, getUrl} = require('./db-helpers')
 
