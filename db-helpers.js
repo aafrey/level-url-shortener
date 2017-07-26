@@ -34,7 +34,7 @@ const connect = (url, res) => {
       id++
       db.put('_id', id)
       return id
-   }).then(res.end())
+   }).then(() => res.end())
 }
 
 module.exports = {
