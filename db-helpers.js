@@ -10,7 +10,10 @@ const getNextId = () => {
       db.put('_id', '0')
       resolve('0')
     }
-    else resolve(val)
+    else {
+      console.log(val)
+      resolve(val)
+    }
   })
 })
 }                         
@@ -22,18 +25,15 @@ const getUrl = (id) => {
 }
 
 const connect = (url, res) => {
-   var _id
    
-   getNextId().then(id => _id = id )
-   .then(() => res.status(200).send(JSON.stringify({normal: url, shortUrl: shortUrl + _id })))
+   getNextId()
+   .then((id) => res.status(200).send(JSON.stringify({normal: url, shortUrl: shortUrl + id })))
    .then(() => {
      _id = parseInt(_id)
      _id++
      db.put('_id', parseInt(_id))
    })
 } 
-
-
 
 module.exports = {
    connect,
