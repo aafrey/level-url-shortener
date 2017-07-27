@@ -25,7 +25,7 @@ const getUrl = id => {
 
 const connect = (url, res) => {
    getNextId()
-     .then(id => {
+   .then(id => {
         res.status(200).send(JSON.stringify({normal: url, shortUrl: shortUrl + id}))
         db.put(id, url)
         return id
